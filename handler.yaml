@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    tasks:
+        - name: add a user jack
+          user: name=jack shell=/bin/bash group=root home=/home/user/jack comment="hello its jack's the user"
+          notify:
+          - restart sendmail
+        - name: add a user pack
+          user: name=pack shell=/bin/bash group=root home=/home/user/pack comment="hello its pack's the user"
+          notify:
+          - restart sendmail
+          - restart sshd
+        handlers:
+          - name: restart sendmail
+            service: name=sendmail state=restarted
+          - name: restart sshd
+            service: name=sshd state=restarted
