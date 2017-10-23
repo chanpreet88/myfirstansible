@@ -1,2 +1,2 @@
 # myfirstansible
-Test ansible to install multiple packages
+Test ansibles for loops, handlers etc
