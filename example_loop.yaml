@@ -1,0 +1,8 @@
+---
+  - hosts: group2
+    tasks:
+        - name: To setup user1 user2 and group1 group2
+          user: name={{item.name}} state=present shell={{item.shell}}
+          with_items:
+               - { name: 'user1', shell: '/bin/bash' }
+               - { name: 'user2', shell: '/bin/ksh' }
