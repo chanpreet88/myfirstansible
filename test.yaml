@@ -1,0 +1,9 @@
+---
+- hosts: group1
+  tasks:
+      - name: To Install Multiple packages nano wget lvm sendmail
+        yum: name={{item}} state=installed
+        with_items:
+             - nano
+             - wget
+             - sendmail
