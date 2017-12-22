@@ -1,0 +1,13 @@
+---
+  - hosts: group1
+    tasks:
+     - name: to list files in dir
+       command: ls -ltr
+     - block:
+        - name: start senmail service
+          service: name=sndmail state=restarted
+       rescue:
+        - debug: msg='no service found with the name of sndmail'
+        - service: name=sendmail state=started
+       always:
+           - debug: msg='hellow there i will be executed no matter what'
