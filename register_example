@@ -1,0 +1,20 @@
+---
+ - hosts: group1
+
+
+   tasks:
+    - name: to install and start/stop sendmail sshd nginx
+      service: name={{item.name}} state={{item.state}} enabled={{item.enabled}}
+      with_items:
+           - { name: 'sshd', state: 'restarted', enabled: 'yes' }
+    - name: to copy file
+
+      copy: src=/root/file dest=/root/
+    - name: example of register statement in ansible
+      package: name=vanilla state=installed
+      register: package_result
+    - name: now installation of vanilla has failed so wget package will be installed
+
+      package: name=wget state=installed
+
+      when: package_result | failed
