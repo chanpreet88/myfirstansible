@@ -12,6 +12,7 @@
       copy: src=/root/file dest=/root/
     - name: example of register statement in ansible
       package: name=vanilla state=installed
+      ignore_errors: True
       register: package_result
     - name: now installation of vanilla has failed so wget package will be installed
 
